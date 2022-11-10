@@ -10,6 +10,10 @@ const io = new Server(httpServer, {
   },
 });
 
+app.get("/", (req, res) => {
+  res.send("<h1>Hello Brokang Chat</h1>");
+});
+
 let users = [];
 
 const addUser = (socketId, userId, myInfo) => {
@@ -79,10 +83,6 @@ io.on("connection", socket => {
     removeUser(socket.id);
     socket.emit("getUser", users);
   });
-});
-
-app.get("/", (req, res) => {
-  res.send("<h1>Hello Brokang Chat</h1>");
 });
 
 httpServer.listen(5000);
